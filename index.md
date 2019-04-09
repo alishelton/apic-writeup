@@ -32,13 +32,13 @@ Tasks are organized by week
 
 ### Papers
 
-- [link](http://alexey.stomakhin.com/research/siggraph2015_apic.pdf)
-- [link](http://mmacklin.com/pbf_sig_preprint.pdf)
-- [link](https://graphics.uni-bielefeld.de/publications/pbg05.pdf)
+- http://alexey.stomakhin.com/research/siggraph2015_apic.pdf
+- http://mmacklin.com/pbf_sig_preprint.pdf
+- https://graphics.uni-bielefeld.de/publications/pbg05.pdf
 
 ### Books
 
-- [link](https://developer.nvidia.com/gpugems/GPUGems/gpugems_part01.html)
+- https://developer.nvidia.com/gpugems/GPUGems/gpugems_part01.html
 
 ### Computing Platform/Hardware
 
