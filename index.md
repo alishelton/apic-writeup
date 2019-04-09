@@ -35,6 +35,7 @@ Tasks are organized by week
 - http://alexey.stomakhin.com/research/siggraph2015_apic.pdf
 - http://mmacklin.com/pbf_sig_preprint.pdf
 - https://graphics.uni-bielefeld.de/publications/pbg05.pdf
+- https://www.cc.gatech.edu/~turk/my_papers/sph_surfaces.pdf
 
 ### Books
 
