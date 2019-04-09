@@ -46,8 +46,10 @@ Tasks are organized by week
 
 ### Software
 
--OpenGL
--Blender
+```
+- OpenGL
+- Blender
+```
 
 
 ## Welcome to GitHub Pages
