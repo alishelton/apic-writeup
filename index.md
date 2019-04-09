@@ -16,17 +16,46 @@ To provide such a simulation, we turn to the APIC (Affine Particle-in-Cell) meth
 
 ## Goals and Deliverables
 
+### Planned Deliverables
+
+#### Goals
+
+The overall goal of this project can be split into several stages. The first is to provide a realistic particle-based simulation of fluid motion. This includes both the correct physical implementation of the necessary primitives and visualization. The second stage is to provide a realistic texturing to the simulation by generating a surface mesh for each particle update frame and rendering this with the necessary BSDF. Given the information presented in the original [paper](http://alexey.stomakhin.com/research/siggraph2015_apic.pdf) on APIC, we can design and implement such a system with good general direction.  
+
+#### Reporting
+
+In order to report our deliverables, we will generate a number of small video clips/GIFs of our rendered fluid simulation that will reflect the simulation's key properties (conservation of energy, stability, etc.)
+
+#### Performance
+
+In simulation systems, performance determines much of what is feasible to produce given our time constraints, and so in order to measure performance in the first stages, we will present graphs designating the time it takes to fully calculate a single simulation step at the particle/grid level. In the second stage, our performance measure are based heavily on the time necessary to produce a sufrace mesh, and then the time to render this mesh with the proper BSDF. We will also provide a graph for speedup analysis of surface mesh production time along with a written analysis of the rendering speedup over the course of the project for any different methods we attempt. 
+
+### Hopeful Deliverables
+
+If time permits, it would be interesting to make the system completely interactive via the project website.
+
 ## Schedule
 
 Tasks are organized by week
 
 ### Week 1
 
+- particle simulation system visualization via OpenGL
+- rudimentary PIC (Particle-in-Cell) implementation
+
 ### Week 2
+
+- complete APIC implementation
+- surface mesh production algorithm implementation
 
 ### Week 3
 
+- APIC optimizations
+- surface mesh rendering complete/optimizations
+
 ### Week 4
+
+- Final report + optimizations
 
 ## Resources
 
