@@ -44,6 +44,7 @@ Tasks are organized by week
 ### Computing Platform/Hardware
 
 - RTX 2070 
+- Radeon RX 480 
 
 ### Software
 
