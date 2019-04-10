@@ -22,6 +22,8 @@ To provide such a simulation, we turn to the APIC (Affine Particle-in-Cell) meth
 
 The overall goal of this project can be split into several stages. The first is to provide a realistic particle-based simulation of fluid motion. This includes both the correct physical implementation of the necessary primitives and visualization. The second stage is to provide a realistic texturing to the simulation by generating a surface mesh for each particle update frame and rendering this with the necessary BSDF. Given the information presented in the original [paper](http://alexey.stomakhin.com/research/siggraph2015_apic.pdf) on APIC, we can design and implement such a system with good general direction.  
 
+Our current plan is to make use of the equations presented in the referenced APIC paper, those in the surface splatting paper, and preset BSDFs in blender to implement the simulator. 
+
 #### Reporting
 
 In order to report our deliverables, we will generate a number of small video clips/GIFs of our rendered fluid simulation that will reflect the simulation's key properties (conservation of energy, stability, etc.)
@@ -36,7 +38,7 @@ In simulation systems, performance determines much of what is feasible to produc
 
 ### Hopeful Deliverables
 
-If time permits, it would be interesting to make the system completely interactive via the project website.
+If time permits, it would be interesting to make the system completely interactive via the project website. We may also include a number of different materials (beyond water) such as ice cream and lava, like those presented in the presentation video for the relevant paper.
 
 ## Schedule
 
