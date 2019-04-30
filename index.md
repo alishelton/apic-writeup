@@ -49,9 +49,13 @@ In terms of our initial planning, we had hoped to have a completed PIC and APIC 
 - finished implementation of surface mesh algorithm and surace rendering
 - final report + optimizations
 
-## Project Slides
+## Milestone Slides
 
 - https://docs.google.com/presentation/d/1NON9cEiyeiIUWo0XeOZhTuH_BMXTjjbXm8L5d7IDfxU/edit?usp=sharing
+
+## Milestone Video
+
+- https://drive.google.com/file/d/1G6SGieQU5BQz1m61WOORBOVmEE1cxVOG/view?usp=sharing
 
 ## Resources
 
