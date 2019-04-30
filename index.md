@@ -2,8 +2,9 @@
 
 ## Table of Contents
 
-Proposal
-Milestone
+[Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
+
+[Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 
 
 # Milestone
@@ -19,9 +20,9 @@ We are currently working on generalizing the code to 3D particle simulation, and
 
 ## Preliminary Results
 
-Below is a comparison of a PIC (Particle-in-Cell) and our APIC simulation:
+Below is an example of our APIC simulation in 2D:
 
-(gifs here)
+![alt text](https://github.com/alishelton/184-project-proposal/blob/master/gifs/apic1.gif)
 
 ## Progress by Plan
 
