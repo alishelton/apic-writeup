@@ -2,9 +2,8 @@
 
 ## Table of Contents
 
-[Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
-
-[Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
+1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
+2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 
 
 # Milestone
