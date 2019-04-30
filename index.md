@@ -1,5 +1,38 @@
 # Fluid Simulation via the Affine Particle-in-Cell Method
 
+## Table of Contents
+
+Proposal
+Milestone
+
+
+# Milestone
+
+## Accomplishments
+
+So far, most of our effort has gone into the implementation of a 2D APIC simulation via Stanford CS348C. We've implemented the key grid and particle momentum transfer equations that are particular to an APIC implementation. The equations are as follows:
+
+
+
+## Preliminary Results
+
+## Progress
+
+## Planning Updates
+
+
+## Resources
+
+- http://graphics.stanford.edu/courses/cs348c/PA3_APIC2017/index.html
+- http://alexey.stomakhin.com/research/siggraph2015_apic.pdf
+- http://rlguy.com/gridfluidsim/
+- https://github.com/austinEng/WebGL-PIC-FLIP-Fluid/tree/master/demo/shaders
+- http://www.thevisualroom.com/marker_and_cell_method.html
+- http://plaza.ufl.edu/ebrackear/
+
+
+# Proposal
+
 ## Summary
 
 We intend to design a fluid simulator based on the affine particle-in-cell method. To ensure realism of the simulations, we also intend to render the fluid point-clouds via surface splatting techniques. 
