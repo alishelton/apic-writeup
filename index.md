@@ -21,7 +21,7 @@ We are currently working on generalizing the code to 3D particle simulation, and
 
 Below is an example of our APIC simulation in 2D:
 
-![alt text](gifs/apic1.gif)
+![alt text](gifs/apic0.gif)
 
 ## Progress by Plan
 
