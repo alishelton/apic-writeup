@@ -29,7 +29,6 @@ In terms of our initial planning, we had hoped to have a completed PIC and APIC 
 
 ## Planning Updates
 
-
 ### Week 1 (Done)
 
 -2D PIC and APIC understanding
