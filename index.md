@@ -10,16 +10,45 @@ Milestone
 
 ## Accomplishments
 
-So far, most of our effort has gone into the implementation of a 2D APIC simulation via Stanford CS348C. We've implemented the key grid and particle momentum transfer equations that are particular to an APIC implementation. The equations are as follows:
+So far, most of our effort has gone into the implementation of a 2D APIC simulation via Stanford CS348C. We've implemented the key grid and particle momentum transfer equations that are particular to the APIC implementation. The equations are as follows:
 
+![alt text](https://github.com/alishelton/184-project-proposal/blob/master/imgs/eq13.png)
+![alt text](https://github.com/alishelton/184-project-proposal/blob/master/imgs/eq14.png)
 
+We are currently working on generalizing the code to 3D particle simulation, and from there will move on to surfacing the particle clouds. We have also started work on an OpenGL simulator for running our 3D simulations, as our current simulator is restricted to 2 dimensions. 
 
 ## Preliminary Results
 
-## Progress
+Below is a comparison of a PIC (Particle-in-Cell) and our APIC simulation:
+
+(gifs here)
+
+## Progress by Plan
+
+In terms of our initial planning, we had hoped to have a completed PIC and APIC implementation by the end of the second week. Since we are currently using a sample of starter code, a PIC implentation was provided, and we can readily compare that against our APIC implementation. Since the implementation is in 2D however, we are a bit behind. We are also a behind on schedule in terms of the simulator, however we hope to have that running as soon as possible to for testing our 3D generalization of the APIC aglorithm. 
 
 ## Planning Updates
 
+
+### Week 1 (Done)
+
+-2D PIC and APIC understanding
+
+### Week 2 (Nearly Done)
+
+- complete APIC implementation
+- beginning of a 3D simulation environment
+
+### Week 3
+
+- APIC 3D generlization
+- complete 3D simulation environment
+- beginning implementation of surface mesh algorithm
+
+### Week 4
+
+- finished implementation of surface mesh algorithm and surace rendering
+- final report + optimizations
 
 ## Resources
 
@@ -29,7 +58,6 @@ So far, most of our effort has gone into the implementation of a 2D APIC simulat
 - https://github.com/austinEng/WebGL-PIC-FLIP-Fluid/tree/master/demo/shaders
 - http://www.thevisualroom.com/marker_and_cell_method.html
 - http://plaza.ufl.edu/ebrackear/
-
 
 # Proposal
 
