@@ -12,8 +12,8 @@
 
 So far, most of our effort has gone into the implementation of a 2D APIC simulation via Stanford CS348C. We've implemented the key grid and particle momentum transfer equations that are particular to the APIC implementation. The equations are as follows:
 
-![alt text](https://github.com/alishelton/184-project-proposal/blob/master/imgs/eq13.png)
-![alt text](https://github.com/alishelton/184-project-proposal/blob/master/imgs/eq14.png)
+![alt text](imgs/eq13.png)
+![alt text](imgs/eq14.png)
 
 We are currently working on generalizing the code to 3D particle simulation, and from there will move on to surfacing the particle clouds. We have also started work on an OpenGL simulator for running our 3D simulations, as our current simulator is restricted to 2 dimensions. 
 
@@ -21,7 +21,7 @@ We are currently working on generalizing the code to 3D particle simulation, and
 
 Below is an example of our APIC simulation in 2D:
 
-![alt text](https://github.com/alishelton/184-project-proposal/blob/master/gifs/apic1.gif)
+![alt text](gifs/apic1.gif)
 
 ## Progress by Plan
 
