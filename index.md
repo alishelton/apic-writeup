@@ -6,6 +6,49 @@
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 
 
+# Final Report
+
+## Abstract
+
+
+
+
+## Technical Approach
+
+- apic description
+
+*m*<sub>*a**i*</sub><sup>*n*</sup>∑<sub>*p*</sub>*m*<sub>*p*</sub>*w*<sub>*a**i**p*</sub><sup>*n*</sup>
+
+- particle description and particle to grid equation
+- 3D MAC Grid description
+- advection equations
+- velocity sweeping/FSM
+- grid to particle equation/affine description
+- particle to mesh reconstruction
+- mesh rendering
+
+## Results
+
+
+
+
+## References 
+
+
+
+
+## Team Contributions
+
+
+
+
+
+
+
+
+
+
+
 # Milestone
 
 ## Accomplishments
