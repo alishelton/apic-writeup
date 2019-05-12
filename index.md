@@ -15,12 +15,37 @@
 
 ## Technical Approach
 
-- apic description
+### High Level APIC description
 
-*m*<sub>*a**i*</sub><sup>*n*</sup>∑<sub>*p*</sub>*m*<sub>*p*</sub>*w*<sub>*a**i**p*</sub><sup>*n*</sup>
+APIC is an Eulerian grid based simulation method for physically-based particle simulation. The method itself builds upon earlier methods (PIC and FLIP respectively) by augmenting each particle with a locally affine description of the fluid velocity field. In doing so, APIC reduces overall loss of energy (especially rotational energy) during its velocity update calculation, and remains more stable than previous methods. 
 
+
+### 3-Dimensional Marker-and-Cell Grid 
+
+The main technical driver behind our implementation was a MAC (Marker-and-Cell) grid, which looks as follows:
+
+![alt text](imgs/eq13.png)
+
+
+
+### Particles
 - particle description and particle to grid equation
-- 3D MAC Grid description
+
+
+Each particle maintains the following information:
+
+- position: Vec3 x_p
+- velocity Vec3 u_p
+- locally affine decriptor (x direction): Vec3 cx
+- locally affine decriptor (y direction): Vec3 cy
+- locally affine decriptor (z direction): Vec3 cz
+
+
+
+
+
+
+
 - advection equations
 - velocity sweeping/FSM
 - grid to particle equation/affine description
