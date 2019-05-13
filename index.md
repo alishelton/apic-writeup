@@ -133,7 +133,7 @@ To solve these equations in a discrete space we calculate the pressure gradients
 
 and the velocity field divergence
 
-![alt text](imgs/velocitydiv.png)
+![alt text](imgs/3dvelocitydiv.png)
 
 Now, solving the equations, we get:
 
