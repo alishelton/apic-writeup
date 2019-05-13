@@ -19,31 +19,92 @@
 
 APIC is an Eulerian grid based simulation method for physically-based particle simulation. The method itself builds upon earlier methods (PIC and FLIP respectively) by augmenting each particle with a locally affine description of the fluid velocity field. In doing so, APIC reduces overall loss of energy (especially rotational energy) during its velocity update calculation, and remains more stable than previous methods. 
 
+Before we introduce the underlying algorithm behind APIC, it is useful to know the data structures that represent the various qunatities of our fluid. 
 
 ### 3-Dimensional Marker-and-Cell Grid 
 
-The main technical driver behind our implementation was a MAC (Marker-and-Cell) grid, which looks as follows:
+The main technical driver behind our implementation is a staggered MAC (Marker-and-Cell) grid. The grid is made up of cube cells that store various physical quantities we'd like to calculate. Each cell looks as follows:
 
-![alt text](imgs/eq13.png)
+![alt text](imgs/MACcell.png)
 
+We store discrete pressures at the center of each cell and maintain 3 velocity fields. The velocity field u retains information about discrete velocities on the x faces, v on the y faces, and w on the z faces. The reason for this geometry is so that we can take advantage of central differences for the pressure gradient and the divergence of the velocity field. This staggered central difference gives us the nice properties of an unbiased and accurate discrete estimator. 
 
+The marker portion of the name comes from marking each cell as either an air, water, or solid cell, which is useful for calculating phi functions as we'll explain later.
 
 ### Particles
-- particle description and particle to grid equation
 
-
-Each particle maintains the following information:
+Each fluid particle maintains the following information:
 
 - position: Vec3 x_p
-- velocity Vec3 u_p
+- velocity: Vec3 u_p
 - locally affine decriptor (x direction): Vec3 cx
 - locally affine decriptor (y direction): Vec3 cy
 - locally affine decriptor (z direction): Vec3 cz
 
+### Overall Algorithm
+
+Operations done on grid are follow by a (g)
+
+- Initialize Particles
+- For Each Step in NUM_ITER:
+  - Move Particles
+  - Transfer Particles to Grid
+  - Save Velocities (g)
+  - Add Forces (g)
+  - Compute Distance to Fluid (g)
+  - Extend Velocity Field (g)
+  - Apply Boundary Conditions (g)
+  - Make Fluid Incompressible (g)
+  - Extend Velocity Field (g)
+  - Update Velocity Field (g)
+  - Update Particle Velocities from Grid
+  
+We'll now go over each step in detail, explaining the involved physical equations along the way
+
+### Particle Initialization
+
+To intialize particles we make use of level sets. Level sets describe an implicit surface on a grid, dictated by the equation:
+
+![alt text](imgs/levelset.png)
+
+For reliable numerical computation, we'd also like for our function to be resilient to numerical error, and so we place the condition on the gradient such tha:
+
+![alt text](imgs/gradient1.png)
+
+We therefore use a signed distance function, whose values describe the implicit surface, and has the additional property that all values within the surface are negative, and all values outside are positive. 
+
+The following example of a phi function describes a rectangular base of water and a spherical water droplet above it offset in the y direction
+
+`min(y-FLOOR_SIZE*grid.ly, sqrt(sqr(x-0.5*grid.lx)+sqr(y-0.5*grid.ly)+sqr(z-0.5*grid.lz))-DROP_RADIUS*grid.lx)`
+
+### Move Particles
+
+In order to avoid large numerical errors, we use Runge-Kutta 2, a modified Euler method. 
+
+### Particle to Grid Update
+
+We perform all of our physical calculations on the MAC grid, and so we update the grid with the current particle velocities to begin our velocity update. The equation defining how this is done follows:
+
+![alt text](imgs/eq13.png)
+
+For our purposes, we assume that particle mass does not change, and we can effectively ignore it for our computations. 
+
+The weights w_{aip} are defined by the trilinear interpolation kernel, and so only the grid cell containing the particle has its velocity fields updated. For each particle, we update the correpsonding face-oriented velocity field on the grid by breaking the equation down as follows:
+
+-x one
+-y one
+-z one
+
+### Add Forces
+
+To maintain simplicity, the only force we consider is gravity, which is added only to the velocity fields on the grid in the y direction (v). 
+
+### Compute Distance to Fluid
+
+This function computes the signed-distance phi function of the fluid level set at a given frame by identifying fluid-marker cells in the grid. We make use of the FSM (Fast Sweeping Method) to calculate the phi values. The equations that determine phi values are as follows:
 
 
-
-
+![alt text](imgs/fsm.png)
 
 
 - advection equations
@@ -51,6 +112,11 @@ Each particle maintains the following information:
 - grid to particle equation/affine description
 - particle to mesh reconstruction
 - mesh rendering
+
+
+### Physical Equations
+
+
 
 ## Results
 
