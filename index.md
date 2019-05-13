@@ -89,11 +89,7 @@ We perform all of our physical calculations on the MAC grid, and so we update th
 
 For our purposes, we assume that particle mass does not change, and we can effectively ignore it for our computations. 
 
-The weights w_{aip} are defined by the trilinear interpolation kernel, and so only the grid cell containing the particle has its velocity fields updated. For each particle, we update the correpsonding face-oriented velocity field on the grid by breaking the equation down as follows:
-
--x one
--y one
--z one
+The formula then determines how we update each of the face-centered velocity fields with particle velocities according to weights w_{aip} via the trilinear interpolation kernel. 
 
 ### Add Forces
 
