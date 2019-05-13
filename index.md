@@ -158,8 +158,6 @@ This update reduces energy dissipation during transfers between the particle and
 
 - rendering pipeline
 - rendering settings (bdpt, refraction bsdf w/ 1.333 IOR)
-
-
 - particle to mesh reconstruction
 - mesh rendering
 
@@ -171,8 +169,27 @@ This update reduces energy dissipation during transfers between the particle and
 
 ## References 
 
+Many of these references were vital to our completion of the project, and so we are incredibly greatful for all of the resources made available to us.
 
+### Papers
+- https://www.math.ucla.edu/~jteran/papers/JSSTS15.pdf
+- https://www.cs.ubc.ca/~rbridson/fluidsimulation/fluids_notes.pdf
+- https://www.math.uci.edu/~zhao/homepage/research_files/FSM.pdf
+- http://hhoppe.com/poissonrecon.pdf
 
+### Online Resources
+- http://www.thevisualroom.com/marker_and_cell_method.html
+
+### Librariries and Code
+- http://graphics.stanford.edu/courses/cs348c/PA3_APIC2017/index.html
+- https://github.com/danielTobon43/pointcloudToMesh
+- http://docs.pointclouds.org/trunk/index.html
+- https://github.com/davidcaron/pclpy
+
+### Software
+- Mitsuba Renderer
+- MeshLab
+- Blender
 
 ## Team Contributions
 
