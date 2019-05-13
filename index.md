@@ -184,7 +184,7 @@ Many of these references were vital to our completion of the project, and so we 
 ### Online Resources
 - http://www.thevisualroom.com/marker_and_cell_method.html
 
-### Librariries and Code
+### Libraries and Code
 - http://graphics.stanford.edu/courses/cs348c/PA3_APIC2017/index.html
 - https://github.com/danielTobon43/pointcloudToMesh
 - http://docs.pointclouds.org/trunk/index.html
