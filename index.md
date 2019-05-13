@@ -103,19 +103,69 @@ To maintain simplicity, the only force we consider is gravity, which is added on
 
 This function computes the signed-distance phi function of the fluid level set at a given frame by identifying fluid-marker cells in the grid. We make use of the FSM (Fast Sweeping Method) to calculate the phi values. The equations that determine phi values are as follows:
 
-
 ![alt text](imgs/fsm.png)
 
+Since we implement a 3D grid, we solve equation 2.5 at every grid position. Next, FSM follows the logic that signed distance information comes from the closest cells, and there are therefore 8 directions in 3 dimensions we can receive this information from. We then sweep over each of these 8 directions (x+-1, y+-1,z+-1). 
 
-- advection equations
-- velocity sweeping/FSM
-- grid to particle equation/affine description
+### Extend Velocity Field
+
+Our next step is to extend the velocity field. The reason behind this is that for a defined fluid, any cell that is marker as fluid will have correspondent velocity fields that are dictated by the particle velocities we retreieved from the grid. Solid cells, taking our simple view, should have 0 velocity. Air cells are unique however in that if we would like trace particle motion from beyond the fluid surface, they would need a correspondent velocity field. However, since no particles were interpolated to these cells, what velocity should they have? This is where our phi function from our distance computation comes into play. We extrapolate air cell velocities by assigning their values to the velocity field values of the closest marker cell on the fluid surface. How do we know which cell is closest? By using the signed distance function we just calculated using FSM!
+
+Since we are on a discrete grid, we interpolate among the closest fluid cells in each direction (x, y, z) by calculating the barycentric values of each velocity field for those cells, and update the corresponding velocity fields on the air cell. 
+
+### Apply Boundary Conditions
+
+For our implementation, we assumed a simple cubic box surrounding the fluid, and so we set the edges (first and last indices) of the grid as solid cells, and set their velocity fields to 0
+
+### Making the Fluid Incompressible
+
+To make fluids incompressible we must first understand the equations governing their physical behavior. First we look to the Navier-Stokes equations of fluid motion:
+
+![alt text](imgs/navierstokes.png)
+
+The first equation (1.1) is known as the momentum equation, and dictates the force transfer among the particles to update the velocity fields of the fluids. The second equation (1.2) is known as the incompressibility equation. It is important to note that while real fluids are indeed compressible, it is both difficult to do so and the effect of fluid compressibility is small and expensive to simulate, so we ignore it. While these equations hold well most fluids, we decided to simplify our implementation further by dropping the viscosity term resulting in the Euler equations below:
+
+![alt text](imgs/euler.png)
+
+To solve these equations in a discrete space we calculate the pressure gradients and velocity field divergence. In 3 dimensions, the pressure gradient is as follows on our staggered MAC grid:
+
+![alt text](imgs/3dpressuregrad.png)
+
+and the velocity field divergence
+
+![alt text](imgs/velocitydiv.png)
+
+Now, solving the equations, we get:
+
+![alt text](imgs/eulersolve.png)
+
+However, while these equations are fairly straightforward, we can place them into a matrix and make use of some of the unique property values to calculate pressure. The method we implemented for this is the Modified Incomplete Cholesky Conjugate Gradient (Level 0) Algorithm. 
+
+Finally, once we've calculated the pressures, we update the velocity field by adding the pressure gradient.
+
+### Grid to Particles Update
+
+Finally, now that we've updated the grid velocity fields with the pressure gradients, we update the grid velocities back to their respective particles. We again use trilinear interpolation to redistribute velocities from cells to particle. However, in addition to updating particle velocities, we also update their locally affine velocity field repsentations using the following equation:
+
+![alt text](imgs/eq14.png)
+
+This update reduces energy dissipation during transfers between the particle and the grid and helps maintain simulation stability. We calculate the gradient by examining slices of the trilinear interpolation kernal on each cell in each direction (x,y,z). 
+
+
+### Point Cloud to Mesh Reconstruction
+
+- describe poisson surface reconstruction
+- how we chose parameters
+- some point cloud to mesh examples
+
+### Mesh Rendering
+
+- rendering pipeline
+- rendering settings (bdpt, refraction bsdf w/ 1.333 IOR)
+
+
 - particle to mesh reconstruction
 - mesh rendering
-
-
-### Physical Equations
-
 
 
 ## Results
