@@ -1,3 +1,7 @@
+---
+title: Affine Particle in Cell Fluid Simulation
+---
+
 # Fluid Simulation via the Affine Particle-in-Cell Method
 
 ## Table of Contents
