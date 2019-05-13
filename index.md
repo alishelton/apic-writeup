@@ -39,63 +39,67 @@ Each fluid particle maintains the following information:
 - locally affine decriptor (y direction): Vec3 cy
 - locally affine decriptor (z direction): Vec3 cz
 
-### Overall Algorithm
+### Overall Algorithm Pesudocode
 
-Operations done on grid are follow by a (g)
-
-- Initialize Particles
-- For Each Step in NUM_ITER:
-  - Move Particles
-  - Transfer Particles to Grid
-  - Save Velocities (g)
-  - Add Forces (g)
-  - Compute Distance to Fluid (g)
-  - Extend Velocity Field (g)
-  - Apply Boundary Conditions (g)
-  - Make Fluid Incompressible (g)
-  - Extend Velocity Field (g)
-  - Update Velocity Field (g)
-  - Update Particle Velocities from Grid
+```
+  particles = initialize_particles()
+  For each step in NUM_ITER:
+    particles.move_particles()
+    particles.transfer_to_grid()
+    grid.save_velocities()
+    grid.add_forces()
+    grid.compute_distance_to_fluid()
+    grid.extend_velocity_field()
+    grid.apply_boundary_conditions()
+    grid.make_fluid_incompressible()
+    grid.extend_velocity_field()
+    grid.update_velocity_field()
+    particles.update_from_grid()
+```
   
 We'll now go over each step in detail, explaining the involved physical equations along the way
 
 ### Particle Initialization
 
-To intialize particles we make use of level sets. Level sets describe an implicit surface on a grid, dictated by the equation:
+To intialize particles we make use of level sets.
+
+#### Level Sets
+
+Level sets describe an implicit surface on a grid, dictated by the equation:
 
 ![alt text](imgs/levelset.png)
 
-For reliable numerical computation, we'd also like for our function to be resilient to numerical error, and so we place the condition on the gradient such tha:
+For reliable numerical computation, we'd also like for our function to be resilient to numerical error, and so we place the condition on the gradient such that:
 
 ![alt text](imgs/gradient1.png)
 
-We therefore use a signed distance function, whose values describe the implicit surface, and has the additional property that all values within the surface are negative, and all values outside are positive. 
+In our implementation, our choice of function is the signed distance function, whose values describe the implicit surface, and has the additional property that all values within the surface are negative, and all values outside are positive. 
 
-The following example of a phi function describes a rectangular base of water and a spherical water droplet above it offset in the y direction
+The following example of a signed distance function describes the rectangular base of water and a spherical water droplet above it offset in the y direction we use to render our images:
 
 `min(y-FLOOR_SIZE*grid.ly, sqrt(sqr(x-0.5*grid.lx)+sqr(y-0.5*grid.ly)+sqr(z-0.5*grid.lz))-DROP_RADIUS*grid.lx)`
 
 ### Move Particles
 
-In order to avoid large numerical errors, we use Runge-Kutta 2, a modified Euler method. 
+In order to avoid large numerical errors, we use Runge-Kutta 2, a modified Euler method. We perform half Euler steps to update particles to their final positions using their velocities,
 
 ### Particle to Grid Update
 
-We perform all of our physical calculations on the MAC grid, and so we update the grid with the current particle velocities to begin our velocity update. The equation defining how this is done follows:
+We perform all physical calculations on the MAC grid, and so we update the grid with the current particle velocities to begin our particle update. The equation defining particle to grid information transfer follows:
 
 ![alt text](imgs/eq13.png)
 
-For our purposes, we assume that particle mass does not change, and we can effectively ignore it for our computations. 
+For our purposes, we assume that particle mass does not change, so we assume it is 1 and will ignore it for the rest of our computations. 
 
-The formula then determines how we update each of the face-centered velocity fields with particle velocities according to weights w_{aip} via the trilinear interpolation kernel. 
+The formula then determines the face-centered velocity field updates with particle velocities according to weights w_{aip}. We calculate these weights using the trilinear interpolation kernel.
 
 ### Add Forces
 
-To maintain simplicity, the only force we consider is gravity, which is added only to the velocity fields on the grid in the y direction (v). 
+To maintain simplicity, the only force we consider is gravity, which is added only to the velocity fields on the grid in the y direction. 
 
 ### Compute Distance to Fluid
 
-This function computes the signed-distance phi function of the fluid level set at a given frame by identifying fluid-marker cells in the grid. We make use of the FSM (Fast Sweeping Method) to calculate the phi values. The equations that determine phi values are as follows:
+This function computes the signed-distance function of the fluid level set at any given frame by identifying fluid-marked cells in the grid. We make use of the FSM (Fast Sweeping Method) to calculate the phi values. The equations defined by the FSM determining the function values are as follows:
 
 ![alt text](imgs/fsm.png)
 
@@ -103,25 +107,27 @@ Since we implement a 3D grid, we solve equation 2.5 at every grid position. Next
 
 ### Extend Velocity Field
 
-Our next step is to extend the velocity field. The reason behind this is that for a defined fluid, any cell that is marker as fluid will have correspondent velocity fields that are dictated by the particle velocities we retreieved from the grid. Solid cells, taking our simple view, should have 0 velocity. Air cells are unique however in that if we would like trace particle motion from beyond the fluid surface, they would need a correspondent velocity field. However, since no particles were interpolated to these cells, what velocity should they have? This is where our phi function from our distance computation comes into play. We extrapolate air cell velocities by assigning their values to the velocity field values of the closest marker cell on the fluid surface. How do we know which cell is closest? By using the signed distance function we just calculated using FSM!
+Next step we extend the velocity field. On our MAC grid, any cell that is marked as fluid will have correspondent velocity fields that are dictated by the particle velocities we retreieved from the particle to grid update. Solid cells, taking our simple view, should have 0 velocity. Air cells are unique however in that if we would like trace particle motion from beyond the fluid surface, they would need a correspondent velocity field. However, since no particles were interpolated to these cells, what velocity should they have? 
+
+To solve this, we extrapolate air cell velocities by assigning their values to the velocity field values at the closest fluid-marked cell. How do we know which cell is closest? By using the signed distance function we just calculated using FSM!
 
 Since we are on a discrete grid, we interpolate among the closest fluid cells in each direction (x, y, z) by calculating the barycentric values of each velocity field for those cells, and update the corresponding velocity fields on the air cell. 
 
 ### Apply Boundary Conditions
 
-For our implementation, we assumed a simple cubic box surrounding the fluid, and so we set the edges (first and last indices) of the grid as solid cells, and set their velocity fields to 0
+For our implementation, we assumed a simple cube surrounding the fluid, and so we set the edges (first and last indices) of the grid as solid cells, and set their velocity fields in each direction to 0.
 
 ### Making the Fluid Incompressible
 
-To make fluids incompressible we must first understand the equations governing their physical behavior. First we look to the Navier-Stokes equations of fluid motion:
+To make fluids incompressible we must first understand the equations governing their physical behavior. First, the Navier-Stokes equations of fluid motion:
 
 ![alt text](imgs/navierstokes.png)
 
-The first equation (1.1) is known as the momentum equation, and dictates the force transfer among the particles to update the velocity fields of the fluids. The second equation (1.2) is known as the incompressibility equation. It is important to note that while real fluids are indeed compressible, it is both difficult to do so and the effect of fluid compressibility is small and expensive to simulate, so we ignore it. While these equations hold well most fluids, we decided to simplify our implementation further by dropping the viscosity term resulting in the Euler equations below:
+The first equation (1.1) is known as the momentum equation, and dictates the force transfer among the particles to update the velocity fields. The second equation (1.2) is known as the incompressibility equation. It is important to note that while real fluids are indeed compressible, it is difficult to do so, minimally noticeable in most conditions, and expensive to simulate, so we ignore it. While these equations hold well most fluids, we decided to simplify our implementation further by dropping the viscosity term, resulting in the Euler equations below:
 
 ![alt text](imgs/euler.png)
 
-To solve these equations in a discrete space we calculate the pressure gradients and velocity field divergence. In 3 dimensions, the pressure gradient is as follows on our staggered MAC grid:
+To solve these equations in a discrete space, we calculate the pressure gradients and velocity field divergence. In 3 dimensions, the pressure gradient is as follows on our staggered MAC grid:
 
 ![alt text](imgs/3dpressuregrad.png)
 
@@ -129,22 +135,23 @@ and the velocity field divergence
 
 ![alt text](imgs/3dvelocitydiv.png)
 
-Now, solving the equations, we get:
+Putting this together with the Euler equations, we get:
 
 ![alt text](imgs/eulersolve.png)
 
-However, while these equations are fairly straightforward, we can place them into a matrix and make use of some of the unique property values to calculate pressure. The method we implemented for this is the Modified Incomplete Cholesky Conjugate Gradient (Level 0) Algorithm. 
+Equation 4.22 is a numerical approximation to the poisson problem, which we solved by implementing the Modified Incomplete Cholesky Conjugate Gradient (Level 0) Algorithm.
 
-Finally, once we've calculated the pressures, we update the velocity field by adding the pressure gradient.
+We finally add the pressure gradient we just solved for to the veloctiy fields.
 
 ### Grid to Particles Update
 
-Finally, now that we've updated the grid velocity fields with the pressure gradients, we update the grid velocities back to their respective particles. We again use trilinear interpolation to redistribute velocities from cells to particle. However, in addition to updating particle velocities, we also update their locally affine velocity field repsentations using the following equation:
+Now we transfer the updated grid velocities back to their respective particles. We again use trilinear interpolation to redistribute velocities from cells to particles. 
+
+In addition to updating particle velocities, we also update their locally affine velocity field repsentations using the following equations:
 
 ![alt text](imgs/eq14.png)
 
-This update reduces energy dissipation during transfers between the particle and the grid and helps maintain simulation stability. We calculate the gradient by examining slices of the trilinear interpolation kernal on each cell in each direction (x,y,z). 
-
+This update reduces energy dissipation during transfers between the particle and the grid and helps maintain simulation stability. We calculate the weight gradient by examining slices of the trilinear interpolation kernal on each cell in each direction (x,y,z). 
 
 ### Point Cloud to Mesh Reconstruction
 
@@ -162,7 +169,14 @@ This update reduces energy dissipation during transfers between the particle and
 
 ## Results
 
+### Early Results
 
+#### 2D APIC
+
+![2D APIC](gifs/apic0.gif)
+
+
+#### 3D PIC FLIP APIC
 
 
 ## References 
