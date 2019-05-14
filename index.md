@@ -5,7 +5,6 @@
 1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 
-
 # Final Report
 
 ## Abstract
@@ -142,7 +141,7 @@ This update reduces energy dissipation during transfers between the particle and
 
 ### Point Cloud to Mesh Reconstruction
 
-Once we got our point cloud from solving the APIC simulation, we need a way to create a mesh to pass into rendering.  We decided to use Poisson surface reconstruction over other methods (we also considered marching cubes) because it is more stable due to its reslience to noise and is often used for fluid simulation. Poisson surface reconstruction considers all points at once, and casts surface reconstruction as a Poisson problem that uses an indicator function (inside/outside model) and extracts an isosurface. We initially used code from https://github.com/danielTobon43/pointcloudToMesh, choosing the option of creating a triangle mesh rather than a polygon mesh because it works better with other software that we use later on. In our later renders, we wrote a mesh generation script using pclypy and modified parameters to create better meshes.
+Once we got our point cloud from solving the APIC simulation, we need a way to create a mesh to pass into rendering.  We decided to use Poisson surface reconstruction over other methods (we also considered marching cubes) because it is more stable due to its reslience to noise and being often used for fluid simulation. Poisson surface reconstruction considers all points at once, and casts surface reconstruction as a Poisson problem that uses an indicator function (inside/outside model) and extracts an isosurface. We initially used code from https://github.com/danielTobon43/pointcloudToMesh, choosing the option of creating a triangle mesh rather than a polygon mesh because it works better with other software that we use later on. In our later renders, we wrote a mesh generation script using pclypy and modified parameters to create better meshes.
 
 ### Mesh Rendering
 
@@ -167,16 +166,16 @@ At this stage, APIC and PIC looked nearly identical, as we were working on fixin
 
 ### Midway Results
 
-At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion (w/ ~ 25000 particles)
+At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion (w/ ~ 25,000 particles)
 
-#### 3D APIC
+#### 3D PIC
 ![3D PIC](gifs/pic.gif)  
-#### 3D APIC
+#### 3D FLIP
 ![3D FLIP](gifs/flip.gif)  
 #### 3D APIC
 ![3D APIC](gifs/apic.gif)
 
-#### 3D APIC w/ More Particles
+#### 3D APIC w/ More Particles (~250,000 particles)
 
 Here, we increased the system particle to see what behaviors would arise. While interesting, the number of particles crowded the screen so much of the drop interaction is missed
 
@@ -184,15 +183,19 @@ Here, we increased the system particle to see what behaviors would arise. While 
 
 ### Renders
 
-Here we can see how we go from the point cloud to a mesh
+Here we can see how we go from the point cloud to a mesh:
 
+![Frame 30 Particle Cloud](imgs/frame30_cloud.jpg)
+![Frame 30 Mesh](frame30_mesh.png)
 
+And finally, our renders:
 
+![3D APIC Rendered](gifs/water_render_first_reduced_size.jpg)
+![3D APIC Rendered](gifs/water_render_final_reduced_size.jpg)
 
 Full Resolution gifs link (they were too large!)
 
 https://imgur.com/a/2drihIv
-
 
 ## Contributions from each Team Member
 
