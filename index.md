@@ -4,6 +4,11 @@
 
 1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
+3. [Final Report](https://alishelton.github.io/184-project-proposal/#final_report)
+  3.1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
+  3.2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical_approach)
+  3.3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team_contributions)
+  3.4. [References](https://alishelton.github.io/184-project-proposal/#references)
 
 # Final Report
 
@@ -13,7 +18,7 @@ In this project our goal was to create a 3D APIC fluid simulation by solving for
 
 ## Technical Approach
 
-### High Level APIC description
+### High Level APIC Description
 
 APIC is an Eulerian grid based simulation method for physically-based particle simulation. The method itself builds upon earlier methods (PIC and FLIP respectively) by augmenting each particle with a locally affine description of the fluid velocity field. In doing so, APIC reduces overall loss of energy (especially rotational energy) during its velocity update calculation, and remains more stable than previous methods. 
 
@@ -197,7 +202,7 @@ Full Resolution gifs link (they were too large!)
 
 https://imgur.com/a/2drihIv
 
-## Contributions from each Team Member
+## Team Contributions
 
 #### Alex Fang
 
