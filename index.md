@@ -216,6 +216,8 @@ Read papers, implemented the 2D to 3D generalization, implemented the APIC equat
 
 #### Raymond Ly
 
+Initially was set to build an interactive simulator similar to the one used in class previously for ClothSim. To do so, I referenced the structure of the simulator given to us, but found that the interactions would not cleanly translate over to fluid simulation, since the physics of the ClothSim project are fully dependent on spring forces. From scratch, then tried to build a simulator in OpenGL but compatibility with existing rendering tools, especially for AMD cards and MacOS, posed problems which we circumvented by rendering frame-by-frame instead of in real time and using Matplotlib. Looked into existing Blender fluid simulation plugins to aid Point Cloud to Mesh conversion. Helped brainstorm overall project ideas and render fluid simulation frames using Mitsuba.
+
 ## References 
 
 Many of these references were vital to our completion of the project, and so we are incredibly grateful for all of the resources made available to us.
