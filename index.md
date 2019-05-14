@@ -26,9 +26,9 @@ The main technical driver behind our implementation is a staggered MAC (Marker-a
 
 ![alt text](imgs/MACcell.png)
 
-We store discrete pressures at the center of each cell and maintain 3 velocity fields. The velocity field u retains information about discrete velocities on the x faces, v on the y faces, and w on the z faces. The reason for this geometry is so that we can take advantage of central differences for the pressure gradient and the divergence of the velocity field. This staggered central difference gives us the nice properties of an unbiased and accurate discrete estimator. 
+We store discrete pressures at the center of each cell and maintain 3 velocity fields. The velocity field u retains information about discrete velocities on the x faces, v on the y faces, and w on the z faces.
 
-The marker portion of the name comes from marking each cell as either an air, water, or solid cell, which is useful for calculating phi functions as we'll explain later.
+The marker portion of the name comes from marking each cell as either an air, water, or solid cell, which is useful for calculating signed distance functions as we'll explain later.
 
 ### Particles
 
@@ -70,19 +70,15 @@ Level sets describe an implicit surface on a grid, dictated by the equation:
 
 ![alt text](imgs/levelset.png)
 
-For reliable numerical computation, we'd also like for our function to be resilient to numerical error, and so we place the condition on the gradient such that:
-
-![alt text](imgs/gradient1.png)
-
 In our implementation, our choice of function is the signed distance function, whose values describe the implicit surface, and has the additional property that all values within the surface are negative, and all values outside are positive. 
 
-The following example of a signed distance function describes the rectangular base of water and a spherical water droplet above it offset in the y direction we use to render our images:
+For example, we used the following signed distance function to create the rectangular base of water and a spherical water droplet in our rendered gifs:
 
 `min(y-FLOOR_SIZE*grid.ly, sqrt(sqr(x-0.5*grid.lx)+sqr(y-0.5*grid.ly)+sqr(z-0.5*grid.lz))-DROP_RADIUS*grid.lx)`
 
 ### Move Particles
 
-In order to avoid large numerical errors, we use Runge-Kutta 2, a modified Euler method. We perform half Euler steps to update particles to their final positions using their velocities,
+In order to avoid large numerical errors, we use Runge-Kutta 2, a modified Euler method. 
 
 ### Particle to Grid Update
 
@@ -104,19 +100,17 @@ This function computes the signed-distance function of the fluid level set at an
 
 ![alt text](imgs/fsm.png)
 
-Since we implement a 3D grid, we solve equation 2.5 at every grid position. Next, FSM follows the logic that signed distance information comes from the closest cells, and there are therefore 8 directions in 3 dimensions we can receive this information from. We then sweep over each of these 8 directions (x+-1, y+-1,z+-1). 
+Since we implement a 3D grid, we solve equation 2.5 at every grid position. Next, FSM follows the logic that signed distance information comes from the closest cells, and there are therefore 8 directions in 3 dimensions we can receive this information from.
 
 ### Extend Velocity Field
 
-Next step we extend the velocity field. On our MAC grid, any cell that is marked as fluid will have correspondent velocity fields that are dictated by the particle velocities we retreieved from the particle to grid update. Solid cells, taking our simple view, should have 0 velocity. Air cells are unique however in that if we would like trace particle motion from beyond the fluid surface, they would need a correspondent velocity field. However, since no particles were interpolated to these cells, what velocity should they have? 
-
-To solve this, we extrapolate air cell velocities by assigning their values to the velocity field values at the closest fluid-marked cell. How do we know which cell is closest? By using the signed distance function we just calculated using FSM!
+Next step we extend the velocity field. On our MAC grid, any cell that is marked as fluid will have correspondent velocity fields dictated by the particle velocities we retreieved from the particle to grid update. Solid cells should have 0 velocity. We extrapolate air cell velocities by assigning their values to the velocity field values at the closest fluid-marked cell determined by our signed distance function.
 
 Since we are on a discrete grid, we interpolate among the closest fluid cells in each direction (x, y, z) by calculating the barycentric values of each velocity field for those cells, and update the corresponding velocity fields on the air cell. 
 
 ### Apply Boundary Conditions
 
-For our implementation, we assumed a simple cube surrounding the fluid, and so we set the edges (first and last indices) of the grid as solid cells, and set their velocity fields in each direction to 0.
+We assumed a simple cube surrounding the fluid, and so we set the edges (first and last indices) of the grid as solid cells, and set their velocity fields in each direction to 0.
 
 ### Making the Fluid Incompressible
 
@@ -124,19 +118,11 @@ To make fluids incompressible we must first understand the equations governing t
 
 ![alt text](imgs/navierstokes.png)
 
-The first equation (1.1) is known as the momentum equation, and dictates the force transfer among the particles to update the velocity fields. The second equation (1.2) is known as the incompressibility equation. It is important to note that while real fluids are indeed compressible, it is difficult to do so, minimally noticeable in most conditions, and expensive to simulate, so we ignore it. While these equations hold well most fluids, we decided to simplify our implementation further by dropping the viscosity term, resulting in the Euler equations below:
+The first equation (1.1) is known as the momentum equation, and dictates the force transfer among the particles to update the velocity fields. The second equation (1.2) is known as the incompressibility equation. While these equations hold well most fluids, we decided to simplify our implementation further by dropping the viscosity term, resulting in the Euler equations below:
 
 ![alt text](imgs/euler.png)
 
-To solve these equations in a discrete space, we calculate the pressure gradients and velocity field divergence. In 3 dimensions, the pressure gradient is as follows on our staggered MAC grid:
-
-![alt text](imgs/3dpressuregrad.png)
-
-and the velocity field divergence
-
-![alt text](imgs/3dvelocitydiv.png)
-
-Putting this together with the Euler equations, we get:
+To solve these equations in a discrete space, we calculate the pressure gradients and velocity field divergence:
 
 ![alt text](imgs/eulersolve.png)
 
