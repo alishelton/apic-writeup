@@ -156,16 +156,11 @@ This update reduces energy dissipation during transfers between the particle and
 
 ### Point Cloud to Mesh Reconstruction
 
-- describe poisson surface reconstruction
-- how we chose parameters
-- some point cloud to mesh examples
+Once we got our point cloud from solving the APIC simulation, we need a way to create a mesh to pass into rendering.  We decided to use Poisson surface reconstruction over other methods (we also considered marching cubes) because it is more stable due to its reslience to noise and is often used for fluid simulation. Poisson surface reconstruction considers all points at once, and casts surface reconstruction as a Poisson problem that uses an indicator function (inside/outside model) and extracts an isosurface. We initially used code from https://github.com/danielTobon43/pointcloudToMesh, choosing the option of creating a triangle mesh rather than a polygon mesh because it works better with other software that we use later on. In our later renders, we wrote a mesh generation script using pclypy and modified parameters to create better meshes.
 
 ### Mesh Rendering
 
-- rendering pipeline
-- rendering settings (bdpt, refraction bsdf w/ 1.333 IOR)
-- particle to mesh reconstruction
-- mesh rendering
+We used Mitsuba renderer to create our rendered images. We also used meshlab in order to convert our mesh files to obj files that are readable by Mitsuba. In order for the renders to look like water, we modified the XML file generated from the obj file to have a dielectric bsdf. We also modified the XML file to use pathtracing with russian roulette, as well as fix the camera at a certain point in order to be able to create a GIF from the frames.
 
 ### Problems Encountered and Lessons Learned
 
