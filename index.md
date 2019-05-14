@@ -167,7 +167,7 @@ At this stage, APIC and PIC looked nearly identical, as we were working on fixin
 
 ### Midway Results
 
-At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion
+At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion (w/ ~ 25000 particles)
 
 #### 3D APIC
 ![3D PIC](gifs/pic.gif)  
@@ -176,7 +176,16 @@ At this stage, we'd just managed to get the third dimension working, and could v
 #### 2D APIC
 ![3D APIC](gifs/apic.gif)
 
+#### 3D APIC w/ More Particles
+
+Here, we increased the system particle to see what behaviors would arise. While interesting, the number of particles crowded the screen so much of the drop interaction is missed
+
+![3D APIC](gifs/apic_more_particles.gif)
+
 ### First Renders
+
+Here we can see how we go from the point cloud to a mesh
+
 
 
 
@@ -188,6 +197,8 @@ At this stage, we'd just managed to get the third dimension working, and could v
 Read papers and helped with doing math to understand how to implement the APIC equations in 3D and in code. Created a 3D visualizer using python's matplotlib in order to help with the debug process. Did research into different types of point to mesh algorithms as well as different types of renders in order to create a pipline through which we can create rendered frames for the fluid simulation from the point cloud outputted by the simulation solver. Helped with brainstorming project ideas, writing project proposal/milestone update, as well as final report.
 
 #### Ali Shelton
+
+Read papers, implemented the 2D to 3D generalization, implemented the APIC equations. Wrote scripts for efficiently converting point clouds to meshes using Point Cloud Library, and rendered the meshes using Mitsuba. Wrote much of the project proposal, milestone, and final report. 
 
 #### Raymond Ly
 
