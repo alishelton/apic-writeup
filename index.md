@@ -5,10 +5,10 @@
 1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 3. [Final Report](https://alishelton.github.io/184-project-proposal/#final_report)
-  - 3.1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
-  - 3.2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
-  - 3.3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
-  - 3.4. [References](https://alishelton.github.io/184-project-proposal/#references)
+  1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
+  2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
+  3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
+  4. [References](https://alishelton.github.io/184-project-proposal/#references)
 
 # Final Report
 
@@ -167,7 +167,7 @@ At this stage, APIC and PIC looked nearly identical, as we were working on fixin
 #### 2D APIC
 ![2D APIC](gifs/apic0.gif)
 #### 2D PIC
-![2D APIC](gifs/pic0.gif)
+![2D APIC](gifs/pic1.gif)
 
 ### Midway Results
 
@@ -179,6 +179,8 @@ At this stage, we'd just managed to get 3D working, and could visualize some coo
 ![3D FLIP](gifs/flip.gif)  
 #### 3D APIC
 ![3D APIC](gifs/apic.gif)
+#### 3D APIC More Energetic
+![3D APIC](gifs/apic_fixed.gif)
 
 #### 3D APIC w/ More Particles (~250,000 particles)
 
@@ -195,8 +197,8 @@ Here we can see how we go from the point cloud to a mesh:
 
 And finally, our renders, the second with better parameter selection for less noisy meshes:
 
-![3D APIC Rendered](gifs/water_render_first_reduced_size.jpg)
-![3D APIC Rendered](gifs/water_render_final_reduced_size.jpg)
+![3D APIC Rendered](gifs/water_rendered_first_reduced_size.jpg)
+![3D APIC Rendered](gifs/water_rendered_final_reduced_size.jpg)
 
 Full Resolution gifs link (they were too large!)
 
