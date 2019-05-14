@@ -197,8 +197,8 @@ Here we can see how we go from the point cloud to a mesh:
 
 And finally, our renders, the second with better parameter selection for less noisy meshes:
 
-![3D APIC Rendered](gifs/water_rendered_first_reduced_size.jpg)
-![3D APIC Rendered](gifs/water_rendered_final_reduced_size.jpg)
+![3D APIC Rendered](gifs/water_rendered_first_reduced_size.gif)
+![3D APIC Rendered](gifs/water_rendered_final_reduced_size.gif)
 
 Full Resolution gifs link (they were too large!)
 
