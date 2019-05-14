@@ -10,6 +10,7 @@
 
 ## Abstract
 
+In this project our goal was to create a 3D APIC fluid simulation by solving for the points frame by frame, and then rendering them. We built off 2D skeleton code from Stanford's CS348C by extending it to 3D and adding in code that enforced the physics equations in APIC. We then used poisson surfacing to generate a mesh from the points, which we then rendered using Mitsuba. Our results produced 2D, 3D, and 3D rendered GIFs of an APIC fluid simulation.
 
 ## Technical Approach
 
@@ -166,6 +167,11 @@ This update reduces energy dissipation during transfers between the particle and
 - particle to mesh reconstruction
 - mesh rendering
 
+### Problems Encountered and Lessons Learned
+
+Early on we encountered lots of bugs with the Stanford starter code as well as not being able to get the APIC equations correct, leading to a less energetic simulation. We dealt with this by breaking the code into pieces, isolating individual parts where the bugs could be occurring and fixing them piece by piece until the overall simulation system worked in 3D. It also helped to create a temporary 3D visualizer to see what parts were not working. For the physics equations, it helped to draw a lot of diagrams and discuss using diagrams how the equations worked before writing it into code. From these problems we learned the importance of understanding the preexisting code we build upon fully in order to expand upon it accurately, as well as having a deep understanding of the paper (APIC) in order to know what we are supposed to see in the preliminary results, as well as be able to derive the correct equations to use in our code. It helped to start with 2D as a simpler case before moving on to 3D.
+
+Later on in the project, we had issues finding programs/software that ran well on our resources, as many graphics related programs seem to use Windows rather than Mac, and many programs would not install due to Clang/OpenMP issues with macOS. Although we managed to find a pipeline to go from points to a rendered image, we learned that it is important to start early on the project and that our life would have been much easier if we took the time to create a efficient pipeline to go from points to rendering rather than doing most steps manually.
 
 ## Results
 
@@ -178,6 +184,15 @@ This update reduces energy dissipation during transfers between the particle and
 
 #### 3D PIC FLIP APIC
 
+## Contributions from each Team Member
+
+#### Alex Fang
+
+Read papers and helped with doing math to understand how to implement the APIC equations in 3D and in code. Created a 3D visualizer using python's matplotlib in order to help with the debug process. Did research into different types of point to mesh algorithms as well as different types of renders in order to create a pipline through which we can create rendered frames for the fluid simulation from the point cloud outputted by the simulation solver. Helped with brainstorming project ideas, writing project proposal/milestone update, as well as final report.
+
+#### Ali Shelton
+
+#### Raymond Ly
 
 ## References 
 
