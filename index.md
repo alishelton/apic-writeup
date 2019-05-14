@@ -166,7 +166,7 @@ At this stage, APIC and PIC looked nearly identical, as we were working on fixin
 
 ### Midway Results
 
-At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion (w/ ~ 25,000 particles)
+At this stage, we'd just managed to get 3D working, and could visualize some cool point cloud motion (w/ ~ 25,000 particles)
 
 #### 3D PIC
 ![3D PIC](gifs/pic.gif)  
@@ -179,7 +179,7 @@ At this stage, we'd just managed to get the third dimension working, and could v
 
 Here, we increased the system particle to see what behaviors would arise. While interesting, the number of particles crowded the screen so much of the drop interaction is missed
 
-![3D APIC](gifs/apic_more_particles.gif)
+![3D APIC](gifs/apic_more_particle.gif)
 
 ### Renders and Final Results
 
