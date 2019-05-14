@@ -5,10 +5,10 @@
 1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 3. [Final Report](https://alishelton.github.io/184-project-proposal/#final_report)
-  1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
-  2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
-  3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
-  4. [References](https://alishelton.github.io/184-project-proposal/#references)
+  - 3.1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
+  - 3.2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
+  - 3.3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
+  - 3.4. [References](https://alishelton.github.io/184-project-proposal/#references)
 
 # Final Report
 
