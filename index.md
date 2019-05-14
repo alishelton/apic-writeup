@@ -181,14 +181,14 @@ Here, we increased the system particle to see what behaviors would arise. While 
 
 ![3D APIC](gifs/apic_more_particles.gif)
 
-### Renders
+### Renders and Final Results
 
 Here we can see how we go from the point cloud to a mesh:
 
 ![Frame 30 Particle Cloud](imgs/frame30_cloud.jpg)
 ![Frame 30 Mesh](frame30_mesh.png)
 
-And finally, our renders:
+And finally, our renders, the second with better parameter selection for less noisy meshes:
 
 ![3D APIC Rendered](gifs/water_render_first_reduced_size.jpg)
 ![3D APIC Rendered](gifs/water_render_final_reduced_size.jpg)
