@@ -167,7 +167,7 @@ At this stage, APIC and PIC looked nearly identical, as we were working on fixin
 #### 2D APIC
 ![2D APIC](gifs/apic0.gif)
 #### 2D PIC
-![2D APIC](gifs/pic1.gif)
+![2D APIC](gifs/pic0.gif)
 
 ### Midway Results
 
