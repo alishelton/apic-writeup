@@ -173,7 +173,7 @@ At this stage, we'd just managed to get the third dimension working, and could v
 ![3D PIC](gifs/pic.gif)  
 #### 3D APIC
 ![3D FLIP](gifs/flip.gif)  
-#### 2D APIC
+#### 3D APIC
 ![3D APIC](gifs/apic.gif)
 
 #### 3D APIC w/ More Particles
@@ -182,12 +182,16 @@ Here, we increased the system particle to see what behaviors would arise. While 
 
 ![3D APIC](gifs/apic_more_particles.gif)
 
-### First Renders
+### Renders
 
 Here we can see how we go from the point cloud to a mesh
 
 
 
+
+Full Resolution gifs link (they were too large!)
+
+https://imgur.com/a/2drihIv
 
 
 ## Contributions from each Team Member
