@@ -158,12 +158,28 @@ Later on in the project, we had issues finding programs/software that ran well o
 
 ### Early Results
 
+At this stage, APIC and PIC looked nearly identical, as we were working on fixing APIC's affine updates
+
 #### 2D APIC
-
 ![2D APIC](gifs/apic0.gif)
+#### 2D PIC
+![2D APIC](gifs/pic0.gif)
+
+### Midway Results
+
+At this stage, we'd just managed to get the third dimension working, and could visualize some cool point cloud motion
+
+#### 3D APIC
+![3D PIC](gifs/pic.gif)  
+#### 3D APIC
+![3D FLIP](gifs/flip.gif)  
+#### 2D APIC
+![3D APIC](gifs/apic.gif)
+
+### First Renders
 
 
-#### 3D PIC FLIP APIC
+
 
 ## Contributions from each Team Member
 
@@ -177,7 +193,7 @@ Read papers and helped with doing math to understand how to implement the APIC e
 
 ## References 
 
-Many of these references were vital to our completion of the project, and so we are incredibly greatful for all of the resources made available to us.
+Many of these references were vital to our completion of the project, and so we are incredibly grateful for all of the resources made available to us.
 
 ### Papers
 - https://www.math.ucla.edu/~jteran/papers/JSSTS15.pdf
@@ -198,17 +214,6 @@ Many of these references were vital to our completion of the project, and so we 
 - Mitsuba Renderer
 - MeshLab
 - Blender
-
-## Team Contributions
-
-
-
-
-
-
-
-
-
 
 
 # Milestone
