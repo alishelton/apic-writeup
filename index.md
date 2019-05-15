@@ -15,9 +15,7 @@
 
 ## Video
 
-![alt text](imgs/MACcell.png)
-
-or the youtube link: https://youtu.be/7xakX-tGEDw
+https://youtu.be/7xakX-tGEDw
 
 ## Abstract
 
