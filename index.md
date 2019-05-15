@@ -17,9 +17,7 @@
 
 ![alt text](imgs/MACcell.png)
 
-or the youtube link
-
-
+or the youtube link: https://youtu.be/7xakX-tGEDw
 
 ## Abstract
 
