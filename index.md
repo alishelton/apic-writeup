@@ -5,12 +5,21 @@
 1. [Proposal](https://alishelton.github.io/184-project-proposal/#proposal)
 2. [Milestone](https://alishelton.github.io/184-project-proposal/#milestone)
 3. [Final Report](https://alishelton.github.io/184-project-proposal/#final_report)
-  - 3.1. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
-  - 3.2. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
-  - 3.3. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
-  - 3.4. [References](https://alishelton.github.io/184-project-proposal/#references)
+  - 3.1. [Video](https://alishelton.github.io/184-project-proposal/#video) 
+  - 3.2. [Abstract](https://alishelton.github.io/184-project-proposal/#abstract)
+  - 3.3. [Technical Approach](https://alishelton.github.io/184-project-proposal/#technical-approach)
+  - 3.4. [Team Contributions](https://alishelton.github.io/184-project-proposal/#team-contributions)
+  - 3.5. [References](https://alishelton.github.io/184-project-proposal/#references)
 
 # Final Report
+
+## Video
+
+![alt text](imgs/MACcell.png)
+
+or the youtube link
+
+
 
 ## Abstract
 
